@@ -1,0 +1,149 @@
+@model IEnumerable<TestREA.Models.ReaUtilisateur>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomUtilisateur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrenomUtilisateur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodeCommercial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MotPasse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailUtilisateur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonnelExterne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodeCommercial2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPartenaire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestApplication)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodeCegid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UtilisateurTest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdStatut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdGroupeNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdSiteNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUtilisateurRhNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomUtilisateur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrenomUtilisateur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodeCommercial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotPasse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailUtilisateur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonnelExterne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodeCommercial2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPartenaire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestApplication)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodeCegid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UtilisateurTest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdStatut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdGroupeNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSiteNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUtilisateurRhNavigation.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

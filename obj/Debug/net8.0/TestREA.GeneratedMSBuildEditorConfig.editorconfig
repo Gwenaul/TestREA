@@ -1,0 +1,95 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TestREA
+build_property.RootNamespace = TestREA
+build_property.ProjectDir = C:\Users\g.bodet\Desktop\Projet#1_Le_CNAM\TestREAScaffoldDotNet\TestREA\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\g.bodet\Desktop\Projet#1_Le_CNAM\TestREAScaffoldDotNet\TestREA
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaApplication/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhQXBwbGljYXRpb25cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaApplication/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhQXBwbGljYXRpb25cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaApplication/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhQXBwbGljYXRpb25cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaApplication/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhQXBwbGljYXRpb25cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaApplication/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhQXBwbGljYXRpb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaUtilisateur/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhVXRpbGlzYXRldXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaUtilisateur/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhVXRpbGlzYXRldXJcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaUtilisateur/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhVXRpbGlzYXRldXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaUtilisateur/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhVXRpbGlzYXRldXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/ReaUtilisateur/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhVXRpbGlzYXRldXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/g.bodet/Desktop/Projet\#1_Le_CNAM/TestREAScaffoldDotNet/TestREA/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-x2fib0ao0q
