@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TestREA.bundle.scp.css",
-      "PackagePath": "staticwebassets\\TestREA.bundle.scp.css"
+      "PackagePath": "staticwebassets\\TestREA.h99pnqh0z8.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\wwwroot\\css\\site.css",
@@ -243,6 +243,10 @@
     {
       "Id": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TestREA.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TestREA.Microsoft.AspNetCore.StaticWebAssets.props",

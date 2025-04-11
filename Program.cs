@@ -1,5 +1,6 @@
 using TestREA.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.LoginPath = "/AccountController/Login";
+        options.LogoutPath = "/AccountController/Logout";
+        options.AccessDeniedPath = "/AccountController/AccessDenied";
+    });
 
 var app = builder.Build();
 
@@ -26,6 +38,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

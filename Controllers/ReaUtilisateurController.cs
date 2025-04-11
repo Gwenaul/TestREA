@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +18,45 @@ namespace TestREA.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         // GET: ReaUtilisateur
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filtreSaisie, bool UtilisateurTest = false, int page = 1, int nombreLignes = 10)
         {
-            var appDbContext = _context.ReaUtilisateurs.Include(r => r.IdGroupeNavigation).Include(r => r.IdSiteNavigation).Include(r => r.IdUtilisateurRhNavigation);
-            return View(await appDbContext.ToListAsync());
+            var query = _context.ReaUtilisateurs
+                .Include(r => r.IdStatutNavigation)
+                .Include(r => r.IdGroupeNavigation)
+                .Include(r => r.IdSiteNavigation)
+                .Include(r => r.IdUtilisateurRhNavigation)
+                .AsQueryable();
+
+            // Appliquer le filtrage
+            if (!string.IsNullOrEmpty(filtreSaisie))
+            {
+                query = query.Where(u => u.NomUtilisateur.Contains(filtreSaisie)
+                    || u.EmailUtilisateur.Contains(filtreSaisie)
+                    || u.PrenomUtilisateur.Contains(filtreSaisie));
+            }
+
+            if (UtilisateurTest)
+            {
+                query = query.Where(u => u.UtilisateurTest == true);
+            }
+
+            // Calculer le nombre total d'éléments après filtrage
+            var appDbContextTotal = await query.CountAsync();
+
+            // Appliquer la pagination
+            var appDbContextRestreint = await query
+                .Skip((page - 1) * nombreLignes)
+                .Take(nombreLignes)
+                .ToListAsync();
+
+            // Passer les données nécessaires à la vue
+            ViewBag.Page = page;
+            ViewBag.NombreLignes = nombreLignes;
+            ViewBag.AppDbContextTotal = appDbContextTotal;
+
+            return View(appDbContextRestreint);
         }
 
         // GET: ReaUtilisateur/Details/5
@@ -34,9 +68,18 @@ namespace TestREA.Controllers
             }
 
             var reaUtilisateur = await _context.ReaUtilisateurs
+                .Include(r => r.IdStatutNavigation)
                 .Include(r => r.IdGroupeNavigation)
                 .Include(r => r.IdSiteNavigation)
                 .Include(r => r.IdUtilisateurRhNavigation)
+                .Include(r => r.ReaDroitProfils)
+                .ThenInclude(rr => rr.IdProfilNavigation)
+                .Include(r => r.ReaDroitRoles)
+                .ThenInclude(rr => rr.IdRoleNavigation)
+                .Include(r => r.ReaDroitUtilisateurs)
+                .ThenInclude(rr => rr.IdApplicationNavigation)
+                .Include(r => r.ReaVerrous)
+                .ThenInclude(rr => rr.IdApplicationNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (reaUtilisateur == null)
             {
@@ -49,8 +92,9 @@ namespace TestREA.Controllers
         // GET: ReaUtilisateur/Create
         public IActionResult Create()
         {
-            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Id");
-            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "Id");
+            ViewData["IdStatut"] = new SelectList(_context.ReaStatuts, "Id", "Libelle");
+            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Libelle");
+            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "NomSite");
             ViewData["IdUtilisateurRh"] = new SelectList(_context.ReaUtilisateurRhs, "Id", "Id");
             return View();
         }
@@ -68,8 +112,9 @@ namespace TestREA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Id", reaUtilisateur.IdGroupe);
-            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "Id", reaUtilisateur.IdSite);
+            ViewData["IdStatut"] = new SelectList(_context.ReaStatuts, "Id", "Libelle", reaUtilisateur.IdStatut);
+            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Libelle", reaUtilisateur.IdGroupe);
+            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "NomSite", reaUtilisateur.IdSite);
             ViewData["IdUtilisateurRh"] = new SelectList(_context.ReaUtilisateurRhs, "Id", "Id", reaUtilisateur.IdUtilisateurRh);
             return View(reaUtilisateur);
         }
@@ -87,8 +132,9 @@ namespace TestREA.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Id", reaUtilisateur.IdGroupe);
-            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "Id", reaUtilisateur.IdSite);
+            ViewData["IdStatut"] = new SelectList(_context.ReaStatuts, "Id", "Libelle", reaUtilisateur.IdStatut);
+            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Libelle", reaUtilisateur.IdGroupe);
+            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "NomSite", reaUtilisateur.IdSite);
             ViewData["IdUtilisateurRh"] = new SelectList(_context.ReaUtilisateurRhs, "Id", "Id", reaUtilisateur.IdUtilisateurRh);
             return View(reaUtilisateur);
         }
@@ -125,8 +171,9 @@ namespace TestREA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Id", reaUtilisateur.IdGroupe);
-            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "Id", reaUtilisateur.IdSite);
+            ViewData["IdStatut"] = new SelectList(_context.ReaStatuts, "Id", "Libelle", reaUtilisateur.IdStatut);
+            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Libelle", reaUtilisateur.IdGroupe);
+            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "NomSite", reaUtilisateur.IdSite);
             ViewData["IdUtilisateurRh"] = new SelectList(_context.ReaUtilisateurRhs, "Id", "Id", reaUtilisateur.IdUtilisateurRh);
             return View(reaUtilisateur);
         }
@@ -140,6 +187,7 @@ namespace TestREA.Controllers
             }
 
             var reaUtilisateur = await _context.ReaUtilisateurs
+                .Include(r => r.IdStatutNavigation)
                 .Include(r => r.IdGroupeNavigation)
                 .Include(r => r.IdSiteNavigation)
                 .Include(r => r.IdUtilisateurRhNavigation)

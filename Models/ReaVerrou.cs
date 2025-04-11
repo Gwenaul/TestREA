@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TestREA.Models;
+﻿namespace TestREA.Models;
 
 public partial class ReaVerrou
 {
@@ -16,4 +13,8 @@ public partial class ReaVerrou
     public int? IdApplication { get; set; }
 
     public virtual ReaApplication? IdApplicationNavigation { get; set; }
+
+    public virtual ReaUtilisateur IdUtilisateurNavigation { get; set; }
+
 }
+

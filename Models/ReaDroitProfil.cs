@@ -11,7 +11,7 @@ public partial class ReaDroitProfil
 
     public int? IdProfil { get; set; }
 
-    public int? Autorise { get; set; }
+    public bool Autorise { get; set; }
 
     public virtual ReaProfil? IdProfilNavigation { get; set; }
 

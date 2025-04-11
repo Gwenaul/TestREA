@@ -81,7 +81,7 @@ namespace TestREA.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdType"] = new SelectList(_context.ReaTypeApplications, "Id", "Id", reaApplication.IdType);
+            ViewData["IdType"] = new SelectList(_context.ReaTypeApplications, "Id", "Type", reaApplication.IdType);
             return View(reaApplication);
         }
 

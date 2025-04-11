@@ -11,7 +11,7 @@ public partial class ReaDroitRole
 
     public int? IdUtilisateur { get; set; }
 
-    public int? Autorise { get; set; }
+    public bool Autorise { get; set; }
 
     public virtual ReaRole? IdRoleNavigation { get; set; }
 

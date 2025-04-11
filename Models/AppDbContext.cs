@@ -16,64 +16,38 @@ public partial class AppDbContext : DbContext
     }
 
     public virtual DbSet<RaSqlAgent> RaSqlAgents { get; set; }
-
     public virtual DbSet<ReaAcce> ReaAcces { get; set; }
-
     public virtual DbSet<ReaApplication> ReaApplications { get; set; }
-
     public virtual DbSet<ReaAuditeur> ReaAuditeurs { get; set; }
-
     public virtual DbSet<ReaChampApplication> ReaChampApplications { get; set; }
-
     public virtual DbSet<ReaChampProfil> ReaChampProfils { get; set; }
-
     public virtual DbSet<ReaChampVerrou> ReaChampVerrous { get; set; }
-
     public virtual DbSet<ReaDirection> ReaDirections { get; set; }
-
     public virtual DbSet<ReaDroitGroupe> ReaDroitGroupes { get; set; }
-
     public virtual DbSet<ReaDroitProfil> ReaDroitProfils { get; set; }
-
     public virtual DbSet<ReaDroitRole> ReaDroitRoles { get; set; }
-
     public virtual DbSet<ReaDroitUtilisateur> ReaDroitUtilisateurs { get; set; }
-
     public virtual DbSet<ReaDtUnite> ReaDtUnites { get; set; }
-
     public virtual DbSet<ReaGroupe> ReaGroupes { get; set; }
-
     public virtual DbSet<ReaNiveau> ReaNiveaus { get; set; }
-
     public virtual DbSet<ReaPartenaire> ReaPartenaires { get; set; }
-
     public virtual DbSet<ReaPeriodicite> ReaPeriodicites { get; set; }
-
     public virtual DbSet<ReaProfil> ReaProfils { get; set; }
-
     public virtual DbSet<ReaRole> ReaRoles { get; set; }
-
     public virtual DbSet<ReaService> ReaServices { get; set; }
-
     public virtual DbSet<ReaSite> ReaSites { get; set; }
-
     public virtual DbSet<ReaStatut> ReaStatuts { get; set; }
-
     public virtual DbSet<ReaTache> ReaTaches { get; set; }
-
     public virtual DbSet<ReaTypeApplication> ReaTypeApplications { get; set; }
-
     public virtual DbSet<ReaTypeAuditeur> ReaTypeAuditeurs { get; set; }
-
     public virtual DbSet<ReaUtilisateur> ReaUtilisateurs { get; set; }
-
     public virtual DbSet<ReaUtilisateurRh> ReaUtilisateurRhs { get; set; }
-
     public virtual DbSet<ReaVerrou> ReaVerrous { get; set; }
-
     public virtual DbSet<VueReaAccesMobile> VueReaAccesMobiles { get; set; }
-
     public virtual DbSet<VueReaExportAd> VueReaExportAds { get; set; }
+
+    // Ajout de la table ReaChamp
+    public virtual DbSet<ReaChamp> ReaChamps { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -195,6 +169,19 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.IdTypeAuditeurNavigation).WithMany(p => p.ReaAuditeurs)
                 .HasForeignKey(d => d.IdTypeAuditeur)
                 .HasConstraintName("FK_Auditeur_Type");
+        });
+
+        // Configuration pour la table ReaChamp
+        modelBuilder.Entity<ReaChamp>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__REA_Cham__3213E83FFE416075");
+
+            entity.ToTable("REA_Champ");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Description).HasColumnName("description");
         });
 
         modelBuilder.Entity<ReaChampApplication>(entity =>
@@ -601,6 +588,10 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("titre");
             entity.Property(e => e.UtilisateurTest).HasColumnName("utilisateurTest");
 
+            entity.HasOne(d => d.IdStatutNavigation).WithMany()
+                .HasForeignKey(d => d.IdStatut)
+                .HasConstraintName("FK_Utilisateur_Statut");
+
             entity.HasOne(d => d.IdGroupeNavigation).WithMany(p => p.ReaUtilisateurs)
                 .HasForeignKey(d => d.IdGroupe)
                 .HasConstraintName("FK_Utilisateur_Groupe");
@@ -660,9 +651,15 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.IdUtilisateur).HasColumnName("idUtilisateur");
             entity.Property(e => e.NbTentative).HasColumnName("nbTentative");
 
-            entity.HasOne(d => d.IdApplicationNavigation).WithMany(p => p.ReaVerrous)
+            entity.HasOne(d => d.IdApplicationNavigation)
+                .WithMany(p => p.ReaVerrous)
                 .HasForeignKey(d => d.IdApplication)
                 .HasConstraintName("FK_Verrou_Application");
+
+            entity.HasOne(d => d.IdUtilisateurNavigation)
+                .WithMany(p => p.ReaVerrous)
+                .HasForeignKey(d => d.IdUtilisateur)
+                .HasConstraintName("FK_Verrou_Utilisateur");
         });
 
         modelBuilder.Entity<VueReaAccesMobile>(entity =>

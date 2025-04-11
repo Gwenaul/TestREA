@@ -110,19 +110,95 @@
             @Html.DisplayNameFor(model => model.IdStatut)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdStatut)
+            @Html.DisplayFor(model => model.IdStatutNavigation.Libelle)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdGroupeNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdGroupeNavigation.Id)
+            @Html.DisplayFor(model => model.IdGroupeNavigation.Libelle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaDroitProfils)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ReaDroitProfils != null && Model.ReaDroitProfils.Any())
+                {
+                    <ul>
+                        @foreach (var droitProfil in Model.ReaDroitProfils)
+                            {
+                                <li>@droitProfil.IdProfilNavigation.Libelle</li>
+                            }
+                    </ul>
+                }
+            else
+                {
+                    <p>Aucun profil attribué</p>
+                }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaDroitRoles)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ReaDroitRoles != null && Model.ReaDroitRoles.Any())
+                {
+                    <ul>
+                        @foreach (var droitRole in Model.ReaDroitRoles)
+                            {
+                                <li>@droitRole.IdRoleNavigation.Libelle</li>
+                            }
+                    </ul>
+                }
+            else
+                {
+                    <p>Aucun rôle attribué</p>
+                }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaDroitUtilisateurs)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ReaDroitUtilisateurs != null && Model.ReaDroitUtilisateurs.Any())
+                {
+                    <ul>
+                        @foreach (var droitUtilisateur in Model.ReaDroitUtilisateurs)
+                            {
+                                <li>@droitUtilisateur.IdApplicationNavigation.Application</li>
+                            }
+                    </ul>
+                }
+            else
+                {
+                    <p>Aucune application attribuée</p>
+                }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaVerrous)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.ReaVerrous != null && Model.ReaVerrous.Any())
+                {
+                    <ul>
+                        @foreach (var verrou in Model.ReaVerrous)
+                            {
+                                <li>@verrou.IdApplicationNavigation.Application</li>
+                                <ul>
+                                    <li>Nombre de tentatives : @verrou.NbTentative</li>
+                                    <li>Date du verrou : @verrou.DateVerrou</li>
+                                </ul>
+                            }
+                    </ul>
+                }
+            else
+                {
+                    <p>Aucune verrou attribué</p>
+                }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdSiteNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdSiteNavigation.Id)
+            @Html.DisplayFor(model => model.IdSiteNavigation.NomSite)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdUtilisateurRhNavigation)

@@ -65,10 +65,10 @@
                 <input asp-for="Login" class="form-control" />
                 <span asp-validation-for="Login" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PersonnelExterne" class="control-label"></label>
-                <input asp-for="PersonnelExterne" class="form-control" />
-                <span asp-validation-for="PersonnelExterne" class="text-danger"></span>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PersonnelExterne" /> @Html.DisplayNameFor(model => model.PersonnelExterne)
+                </label>
             </div>
             <div class="form-group">
                 <label asp-for="CodeCommercial2" class="control-label"></label>
@@ -85,10 +85,10 @@
                 <input asp-for="Telephone" class="form-control" />
                 <span asp-validation-for="Telephone" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="TestApplication" class="control-label"></label>
-                <input asp-for="TestApplication" class="form-control" />
-                <span asp-validation-for="TestApplication" class="text-danger"></span>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TestApplication" /> @Html.DisplayNameFor(model => model.TestApplication)
+                </label>
             </div>
             <div class="form-group">
                 <label asp-for="CodeCegid" class="control-label"></label>
@@ -102,8 +102,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdStatut" class="control-label"></label>
-                <input asp-for="IdStatut" class="form-control" />
-                <span asp-validation-for="IdStatut" class="text-danger"></span>
+                <select asp-for="IdStatut" class ="form-control" asp-items="ViewBag.IdStatut"></select>
             </div>
             <div class="form-group">
                 <label asp-for="IdUtilisateurRh" class="control-label"></label>

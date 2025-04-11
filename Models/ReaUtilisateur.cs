@@ -29,7 +29,7 @@ public partial class ReaUtilisateur
 
     public string? Login { get; set; }
 
-    public int? PersonnelExterne { get; set; }
+    public bool PersonnelExterne { get; set; }
 
     public string? CodeCommercial2 { get; set; }
 
@@ -37,7 +37,7 @@ public partial class ReaUtilisateur
 
     public string? Telephone { get; set; }
 
-    public int? TestApplication { get; set; }
+    public bool TestApplication { get; set; }
 
     public string? CodeCegid { get; set; }
 
@@ -46,6 +46,8 @@ public partial class ReaUtilisateur
     public int IdStatut { get; set; }
 
     public int? IdUtilisateurRh { get; set; }
+
+    public virtual ReaStatut? IdStatutNavigation { get; set; }
 
     public virtual ReaGroupe? IdGroupeNavigation { get; set; }
 
@@ -58,4 +60,7 @@ public partial class ReaUtilisateur
     public virtual ICollection<ReaDroitRole> ReaDroitRoles { get; set; } = new List<ReaDroitRole>();
 
     public virtual ICollection<ReaDroitUtilisateur> ReaDroitUtilisateurs { get; set; } = new List<ReaDroitUtilisateur>();
+
+    public virtual ICollection<ReaVerrou> ReaVerrous { get; set; } = new List<ReaVerrou>();
+
 }

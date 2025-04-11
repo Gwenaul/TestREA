@@ -17,7 +17,7 @@ public partial class ReaSite
 
     public string? Adresse { get; set; }
 
-    public int? Archive { get; set; }
+    public bool Archive { get; set; }
 
     public virtual ReaDirection? IdDirectionNavigation { get; set; }
 

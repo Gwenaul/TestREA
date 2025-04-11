@@ -11,7 +11,7 @@ public partial class ReaDroitGroupe
 
     public int? IdGroupe { get; set; }
 
-    public int? Autorise { get; set; }
+    public bool Autorise { get; set; }
 
     public virtual ReaApplication? IdApplicationNavigation { get; set; }
 

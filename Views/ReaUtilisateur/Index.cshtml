@@ -9,6 +9,80 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@{
+    int appDbContextTotal = (int)Math.Ceiling((double)ViewBag.AppDbContextTotal / ViewBag.NombreLignes);
+}
+
+<nav>
+    <ul class="pagination">
+        @* Définir le nombre maximum d'onglets visibles *@  
+        @{
+            int maxVisiblePages = 5;
+            int currentPage = ViewBag.Page;
+            int totalPages = appDbContextTotal;
+            int startPage = Math.Max(1, currentPage - (maxVisiblePages / 2));
+            int endPage = Math.Min(totalPages, startPage + maxVisiblePages - 1);
+
+            // Ajuster startPage si endPage atteint la limite
+            if (endPage - startPage + 1 < maxVisiblePages)
+            {
+                startPage = Math.Max(1, endPage - maxVisiblePages + 1);
+            }
+        }
+
+        @* Afficher le bouton "Précédent" *@  
+        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="?page=@(currentPage - 1)">«</a>
+        </li>
+
+        @* Afficher les points de suspension au début si nécessaire *@  
+        @if (startPage > 1)
+        {
+            <li class="page-item disabled">
+                <span class="page-link">...</span>
+            </li>
+        }
+
+        @* Afficher les onglets de pagination *@
+        @for (int i = startPage; i <= endPage; i++)
+        {
+            <li class="page-item @(i == currentPage ? "active" : "")">
+                <a class="page-link" href="?page=@i">@i</a>
+            </li>
+        }
+
+        @* Afficher les points de suspension à la fin si nécessaire *@  
+        @if (endPage < totalPages)
+        {
+            <li class="page-item disabled">
+                <span class="page-link">...</span>
+            </li>
+        }
+
+        @* Afficher le bouton "Suivant" *@
+        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+            <a class="page-link" href="?page=@(currentPage + 1)">»</a>
+        </li>
+    </ul>
+</nav>
+
+<form asp-action="Index" method="get" class="form-inline mb-3">
+    <div class="form-group mr-2">
+        <input type="text" name="filtreSaisie" class="form-control" placeholder="Rechercher par le nom..." value="@Context.Request.Query["filtreSaisie"]" />
+    </div>
+
+    <div class="form-group form-check mr-2">
+        <input type="checkbox" class="form-check-input" id="UtilisateurTest" name="UtilisateurTest" value="true" 
+               @Context.Request.Query["UtilisateurTest"] == "true" ? "checked" : "") />
+        <label class="form-check-label" for="UtilisateurTest">UtilisateurTest</label>
+    </div>
+
+    <div>
+        <input type="submit" value="Search" class="btn btn-primary m1-2" />
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -18,48 +92,45 @@
             <th>
                 @Html.DisplayNameFor(model => model.PrenomUtilisateur)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CodeCommercial)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.Titre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MotPasse)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.EmailUtilisateur)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.DateCreation)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.DateModification)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.Login)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.PersonnelExterne)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.CodeCommercial2)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.IdPartenaire)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Telephone)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.TestApplication)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.CodeCegid)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.UtilisateurTest)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.IdStatut)
             </th>
@@ -69,9 +140,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.IdSiteNavigation)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.IdUtilisateurRhNavigation)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -84,60 +155,57 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PrenomUtilisateur)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CodeCommercial)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Titre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MotPasse)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.EmailUtilisateur)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateCreation)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateModification)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Login)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.PersonnelExterne)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CodeCommercial2)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IdPartenaire)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Telephone)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.TestApplication)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CodeCegid)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.UtilisateurTest)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.IdStatutNavigation.Libelle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdStatut)
+                @Html.DisplayFor(modelItem => item.IdGroupeNavigation.Libelle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdGroupeNavigation.Id)
+                @Html.DisplayFor(modelItem => item.IdSiteNavigation.NomSite)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdSiteNavigation.Id)
-            </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IdUtilisateurRhNavigation.Id)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
