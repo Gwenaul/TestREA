@@ -6,58 +6,32 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TestREA.Repositories;
 using TestREA.Models;
 
 namespace TestREA.Controllers
 {
     public class ReaUtilisateurController : Controller
     {
-        private readonly AppDbContext _context;
-
-        public ReaUtilisateurController(AppDbContext context)
+        private readonly IReaUtilisateurRepository _repository;
+        public ReaUtilisateurController(AppDbContext context, IReaUtilisateurRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
-        [Authorize]
+
         // GET: ReaUtilisateur
         public async Task<IActionResult> Index(string filtreSaisie, bool UtilisateurTest = false, int page = 1, int nombreLignes = 10)
         {
-            var query = _context.ReaUtilisateurs
-                .Include(r => r.IdStatutNavigation)
-                .Include(r => r.IdGroupeNavigation)
-                .Include(r => r.IdSiteNavigation)
-                .Include(r => r.IdUtilisateurRhNavigation)
-                .AsQueryable();
+            var utilisateurs = await _repository.GetUtilisateursAsync(filtreSaisie, UtilisateurTest, page, nombreLignes);
+            var total = await _repository.CountUtilisateursAsync(filtreSaisie, UtilisateurTest);
 
-            // Appliquer le filtrage
-            if (!string.IsNullOrEmpty(filtreSaisie))
-            {
-                query = query.Where(u => u.NomUtilisateur.Contains(filtreSaisie)
-                    || u.EmailUtilisateur.Contains(filtreSaisie)
-                    || u.PrenomUtilisateur.Contains(filtreSaisie));
-            }
-
-            if (UtilisateurTest)
-            {
-                query = query.Where(u => u.UtilisateurTest == true);
-            }
-
-            // Calculer le nombre total d'éléments après filtrage
-            var appDbContextTotal = await query.CountAsync();
-
-            // Appliquer la pagination
-            var appDbContextRestreint = await query
-                .Skip((page - 1) * nombreLignes)
-                .Take(nombreLignes)
-                .ToListAsync();
-
-            // Passer les données nécessaires à la vue
             ViewBag.Page = page;
             ViewBag.NombreLignes = nombreLignes;
-            ViewBag.AppDbContextTotal = appDbContextTotal;
+            ViewBag.AppDbContextTotal = total;
 
-            return View(appDbContextRestreint);
+            return View(utilisateurs);
         }
+
 
         // GET: ReaUtilisateur/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -67,20 +41,8 @@ namespace TestREA.Controllers
                 return NotFound();
             }
 
-            var reaUtilisateur = await _context.ReaUtilisateurs
-                .Include(r => r.IdStatutNavigation)
-                .Include(r => r.IdGroupeNavigation)
-                .Include(r => r.IdSiteNavigation)
-                .Include(r => r.IdUtilisateurRhNavigation)
-                .Include(r => r.ReaDroitProfils)
-                .ThenInclude(rr => rr.IdProfilNavigation)
-                .Include(r => r.ReaDroitRoles)
-                .ThenInclude(rr => rr.IdRoleNavigation)
-                .Include(r => r.ReaDroitUtilisateurs)
-                .ThenInclude(rr => rr.IdApplicationNavigation)
-                .Include(r => r.ReaVerrous)
-                .ThenInclude(rr => rr.IdApplicationNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var reaUtilisateur = await _repository.GetDetailsAsync(id.Value);
+
             if (reaUtilisateur == null)
             {
                 return NotFound();
@@ -90,14 +52,18 @@ namespace TestREA.Controllers
         }
 
         // GET: ReaUtilisateur/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["IdStatut"] = new SelectList(_context.ReaStatuts, "Id", "Libelle");
-            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Libelle");
-            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "NomSite");
-            ViewData["IdUtilisateurRh"] = new SelectList(_context.ReaUtilisateurRhs, "Id", "Id");
+            var (statuts, groupes, sites, utilisateursRh, droitGroupes) = await _repository.GetSelectListsAsync(new ReaUtilisateur());
+            ViewData["IdStatut"] = statuts;
+            ViewData["IdGroupe"] = groupes;
+            ViewData["IdSite"] = sites;
+            ViewData["IdUtilisateurRh"] = utilisateursRh;
+            ViewData["DroitsGroupes"] = droitGroupes;
+
             return View();
         }
+
 
         // POST: ReaUtilisateur/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -108,14 +74,17 @@ namespace TestREA.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(reaUtilisateur);
-                await _context.SaveChangesAsync();
+                _repository.Add(reaUtilisateur);
+                await _repository.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdStatut"] = new SelectList(_context.ReaStatuts, "Id", "Libelle", reaUtilisateur.IdStatut);
-            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Libelle", reaUtilisateur.IdGroupe);
-            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "NomSite", reaUtilisateur.IdSite);
-            ViewData["IdUtilisateurRh"] = new SelectList(_context.ReaUtilisateurRhs, "Id", "Id", reaUtilisateur.IdUtilisateurRh);
+            var (statuts, groupes, sites, utilisateursRh, droitsGroupes) = await _repository.GetSelectListsAsync(reaUtilisateur);
+            ViewData["IdStatut"] = statuts;
+            ViewData["IdGroupe"] = groupes;
+            ViewData["IdSite"] = sites;
+            ViewData["IdUtilisateurRh"] = utilisateursRh;
+            ViewData["DroitsGroupes"] = droitsGroupes;
+
             return View(reaUtilisateur);
         }
 
@@ -127,15 +96,19 @@ namespace TestREA.Controllers
                 return NotFound();
             }
 
-            var reaUtilisateur = await _context.ReaUtilisateurs.FindAsync(id);
+            var reaUtilisateur = await _repository.FindAsync(id.Value);
+
             if (reaUtilisateur == null)
             {
                 return NotFound();
             }
-            ViewData["IdStatut"] = new SelectList(_context.ReaStatuts, "Id", "Libelle", reaUtilisateur.IdStatut);
-            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Libelle", reaUtilisateur.IdGroupe);
-            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "NomSite", reaUtilisateur.IdSite);
-            ViewData["IdUtilisateurRh"] = new SelectList(_context.ReaUtilisateurRhs, "Id", "Id", reaUtilisateur.IdUtilisateurRh);
+            var (statuts, groupes, sites, utilisateursRh, droitsGroupes) = await _repository.GetSelectListsAsync(reaUtilisateur);
+            ViewData["IdStatut"] = statuts;
+            ViewData["IdGroupe"] = groupes;
+            ViewData["IdSite"] = sites;
+            ViewData["IdUtilisateurRh"] = utilisateursRh;
+            ViewData["DroitsGroupes"] = droitsGroupes;
+
             return View(reaUtilisateur);
         }
 
@@ -155,8 +128,8 @@ namespace TestREA.Controllers
             {
                 try
                 {
-                    _context.Update(reaUtilisateur);
-                    await _context.SaveChangesAsync();
+                    _repository.Update(reaUtilisateur);
+                    await _repository.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -171,10 +144,13 @@ namespace TestREA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdStatut"] = new SelectList(_context.ReaStatuts, "Id", "Libelle", reaUtilisateur.IdStatut);
-            ViewData["IdGroupe"] = new SelectList(_context.ReaGroupes, "Id", "Libelle", reaUtilisateur.IdGroupe);
-            ViewData["IdSite"] = new SelectList(_context.ReaSites, "Id", "NomSite", reaUtilisateur.IdSite);
-            ViewData["IdUtilisateurRh"] = new SelectList(_context.ReaUtilisateurRhs, "Id", "Id", reaUtilisateur.IdUtilisateurRh);
+            var (statuts, groupes, sites, utilisateursRh, droitsGroupes) = await _repository.GetSelectListsAsync(reaUtilisateur);
+            ViewData["IdStatut"] = statuts;
+            ViewData["IdGroupe"] = groupes;
+            ViewData["IdSite"] = sites;
+            ViewData["IdUtilisateurRh"] = utilisateursRh;
+            ViewData["DroitsGroupes"] = droitsGroupes;
+
             return View(reaUtilisateur);
         }
 
@@ -186,12 +162,8 @@ namespace TestREA.Controllers
                 return NotFound();
             }
 
-            var reaUtilisateur = await _context.ReaUtilisateurs
-                .Include(r => r.IdStatutNavigation)
-                .Include(r => r.IdGroupeNavigation)
-                .Include(r => r.IdSiteNavigation)
-                .Include(r => r.IdUtilisateurRhNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var reaUtilisateur = await _repository.FindAsync(id.Value);
+
             if (reaUtilisateur == null)
             {
                 return NotFound();
@@ -203,21 +175,28 @@ namespace TestREA.Controllers
         // POST: ReaUtilisateur/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            var reaUtilisateur = await _context.ReaUtilisateurs.FindAsync(id);
-            if (reaUtilisateur != null)
+            if (id == null)
             {
-                _context.ReaUtilisateurs.Remove(reaUtilisateur);
+                return NotFound();
             }
 
-            await _context.SaveChangesAsync();
+            var reaUtilisateur = await _repository.FindAsync(id.Value);
+
+            if (reaUtilisateur != null)
+            {
+                _repository.Remove(reaUtilisateur);
+            }
+
+            await _repository.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReaUtilisateurExists(int id)
         {
-            return _context.ReaUtilisateurs.Any(e => e.Id == id);
+            return _repository.Exists(id);
         }
     }
 }

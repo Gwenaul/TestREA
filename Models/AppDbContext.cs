@@ -50,7 +50,7 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<ReaChamp> ReaChamps { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+    // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=s44m-reporter2;Database=RESSOURCES_APPLICATIONS_TEST;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -98,6 +98,10 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.IdApplicationNavigation).WithMany(p => p.ReaAcces)
                 .HasForeignKey(d => d.IdApplication)
                 .HasConstraintName("FK_Acces_Application");
+
+            entity.HasOne(d => d.IdUtilisateurNavigation).WithMany(p => p.ReaAcces)
+                .HasForeignKey(d => d.IdUtilisateur)
+                .HasConstraintName("FK_Acces_Utilisateur");
         });
 
         modelBuilder.Entity<ReaApplication>(entity =>
@@ -174,21 +178,62 @@ public partial class AppDbContext : DbContext
         // Configuration pour la table ReaChamp
         modelBuilder.Entity<ReaChamp>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__REA_Cham__3213E83FFE416075");
-
+            entity.HasKey(e => e.Id).HasName("PK_Champ");
             entity.ToTable("REA_Champ");
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasColumnName("id");
-            entity.Property(e => e.Description).HasColumnName("description");
+
+            entity.Property(e => e.Description)
+                .HasColumnName("description");
+
+            // Relation avec REA_ChampVerrou(1 ReaChamp => plusieurs ReaChampVerrou)
+            entity.HasOne(e => e.ReaChampVerrou)
+                .WithOne(v => v.ReaChamp)
+                .HasForeignKey<ReaChampVerrou>(v => v.IdChamp) // Clé étrangère dans ReaChampVerrou
+                .HasConstraintName("FK_ChampVerrou_Champ")
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // Relation avec REA_ChampProfil (1 ReaChamp => plusieurs ReaChampProfil)
+            entity.HasMany(e => e.ReaChampProfils)
+                .WithOne(p => p.ReaChamp)
+                .HasForeignKey(p => p.IdChamp)
+                .HasConstraintName("FK_ChampProfil_Champ") // Clé étrangère dans ReaChampProfil
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // Relation avec REA_ChampApplication(1 ReaChamp => plusieurs ReaChampApplication)
+                entity.HasMany(e => e.ReaChampApplications)
+                    .WithOne(a => a.ReaChamp)
+                    .HasForeignKey(a => a.IdChamp)
+                    .HasConstraintName("FK_ChampApplication_Champ")
+                    .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
+        // Configuration pour REA_ChampVerrou
+        modelBuilder.Entity<ReaChampVerrou>(entity =>
+        {
+            entity.HasKey(e => new { e.IdChamp}).HasName("PK_ChampVerrou");
+            entity.ToTable("REA_ChampVerrou");
+
+            entity.Property(e => e.IdChamp).HasColumnName("idChamp");
+            entity.Property(e => e.IdVerrou).HasColumnName("idVerrou");
+            entity.Property(e => e.IdApplication).HasColumnName("idApplication");
+
+            // Relation avec REA_Application
+            entity.HasOne(e => e.IdApplicationNavigation)
+                .WithMany(a => a.ReaChampVerrous)
+                .HasForeignKey(a => a.IdApplication)
+                .HasConstraintName("FK_ChampVerrou_Application")
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+        });
+
+        // Configuration pour REA_ChampApplication
         modelBuilder.Entity<ReaChampApplication>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("REA_ChampApplication");
+            entity.HasKey(e => new { e.IdApplication, e.IdChamp }).HasName("PK_ChampApplication");
+            entity.ToTable("REA_ChampApplication");
 
             entity.Property(e => e.IdApplication).HasColumnName("idApplication");
             entity.Property(e => e.IdChamp).HasColumnName("idChamp");
@@ -196,41 +241,25 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("libelle");
 
-            entity.HasOne(d => d.IdApplicationNavigation).WithMany()
-                .HasForeignKey(d => d.IdApplication)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ChampApp_Application");
         });
 
+        // Configuration pour REA_ChampProfil
         modelBuilder.Entity<ReaChampProfil>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("REA_ChampProfil");
+            entity.HasKey(e => new { e.IdChamp, e.IdProfil }).HasName("PK_ChampProfil");
+            entity.ToTable("REA_ChampProfil");
 
-            entity.Property(e => e.Autorise).HasColumnName("autorise");
             entity.Property(e => e.IdChamp).HasColumnName("idChamp");
             entity.Property(e => e.IdProfil).HasColumnName("idProfil");
+            entity.Property(e => e.Autorise).HasColumnName("autorise");
 
-            entity.HasOne(d => d.IdProfilNavigation).WithMany()
-                .HasForeignKey(d => d.IdProfil)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ChampProfil_Profil");
-        });
+            // Relation avec REA_Profil
+            entity.HasOne(e => e.IdProfilNavigation)
+                .WithMany(p => p.ReaChampProfils)
+                .HasForeignKey(p => p.IdProfil)
+                .HasConstraintName("FK_ChampProfil_Profil")
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
-        modelBuilder.Entity<ReaChampVerrou>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("REA_ChampVerrou");
-
-            entity.Property(e => e.IdApplication).HasColumnName("idApplication");
-            entity.Property(e => e.IdChamp).HasColumnName("idChamp");
-            entity.Property(e => e.IdVerrou).HasColumnName("idVerrou");
-
-            entity.HasOne(d => d.IdApplicationNavigation).WithMany()
-                .HasForeignKey(d => d.IdApplication)
-                .HasConstraintName("FK_ChampVerrou_App");
         });
 
         modelBuilder.Entity<ReaDirection>(entity =>

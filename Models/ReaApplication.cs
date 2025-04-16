@@ -24,4 +24,6 @@ public partial class ReaApplication
     public virtual ICollection<ReaService> ReaServices { get; set; } = new List<ReaService>();
 
     public virtual ICollection<ReaVerrou> ReaVerrous { get; set; } = new List<ReaVerrou>();
+
+    public virtual ICollection<ReaChampVerrou> ReaChampVerrous { get; set; } = new List<ReaChampVerrou>();
 }

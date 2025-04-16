@@ -1,0 +1,78 @@
+@model TestREA.Models.ReaChamp
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ReaChamp</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            Id du champ : @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaChampProfils)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var profil in Model.ReaChampProfils)
+            {
+                <li>@profil.IdProfilNavigation.Libelle</li>
+               
+                if (profil.Autorise)
+                {
+                    <p>-> Autorisé </p>
+                }
+                else
+                {
+                    <p>-> Non Autorisé</p>
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaChampVerrou.IdVerrou)
+        </dt>
+        @if (Model.ReaChampVerrou != null)
+        {
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ReaChampVerrou.IdVerrou)
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-10">
+                Pas de verrou
+            </dd>
+        })
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaChampVerrou.IdApplicationNavigation.Application)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReaChampVerrou.IdApplicationNavigation.Application)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaChampApplications)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var profil in Model.ReaChampApplications)
+            {
+                <li>@profil.Libelle</li>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

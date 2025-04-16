@@ -3,32 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\views\\reautilisateur\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:views\\reautilisateur\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\repositories\\reautilisateurrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:repositories\\reautilisateurrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\models\\reachamp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:models\\reachamp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\models\\reachampapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:models\\reachampapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\models\\reachampverrou.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:models\\reachampverrou.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|c:\\users\\g.bodet\\desktop\\projet#1_le_cnam\\testreascaffolddotnet\\testrea\\models\\reachampprofil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB17EBB-B414-4080-8D60-97DB9FA653B0}|TestREA.csproj|solutionrelative:models\\reachampprofil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,102 +33,91 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 201,
-          "SelectedChildIndex": 3,
+          "DockedWidth": 325,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T14:40:44.165Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T13:28:41.073Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Models\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\AppDbContext.cs",
-              "RelativeToolTip": "Models\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOQCAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T13:15:45.16Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAIwCQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T12:42:26.136Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACYAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T11:59:18.711Z",
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Views\\ReaUtilisateur\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\ReaUtilisateur\\Details.cshtml",
+              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Views\\ReaUtilisateur\\Details.cshtml",
+              "RelativeToolTip": "Views\\ReaUtilisateur\\Details.cshtml",
+              "ViewState": "AgIAAIUAAAAAAAAAAAAqwJIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T13:32:13.218Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 227,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 345,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginModel.cs",
-              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\LoginModel.cs",
-              "RelativeDocumentMoniker": "Models\\LoginModel.cs",
-              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\LoginModel.cs",
-              "RelativeToolTip": "Models\\LoginModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ReaChamp.cs",
+              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\ReaChamp.cs",
+              "RelativeDocumentMoniker": "Models\\ReaChamp.cs",
+              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\ReaChamp.cs",
+              "RelativeToolTip": "Models\\ReaChamp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T13:55:42.465Z",
+              "WhenOpened": "2025-04-15T13:51:32.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T13:49:07.651Z",
+              "DocumentIndex": 5,
+              "Title": "ReaChampProfil.cs",
+              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\ReaChampProfil.cs",
+              "RelativeDocumentMoniker": "Models\\ReaChampProfil.cs",
+              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\ReaChampProfil.cs",
+              "RelativeToolTip": "Models\\ReaChampProfil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T14:15:10.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReaChampVerrou.cs",
+              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\ReaChampVerrou.cs",
+              "RelativeDocumentMoniker": "Models\\ReaChampVerrou.cs",
+              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\ReaChampVerrou.cs",
+              "RelativeToolTip": "Models\\ReaChampVerrou.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T14:14:32.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReaChampApplication.cs",
+              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\ReaChampApplication.cs",
+              "RelativeDocumentMoniker": "Models\\ReaChampApplication.cs",
+              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Models\\ReaChampApplication.cs",
+              "RelativeToolTip": "Models\\ReaChampApplication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:52:53.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReaUtilisateurRepository.cs",
+              "DocumentMoniker": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Repositories\\ReaUtilisateurRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\ReaUtilisateurRepository.cs",
+              "ToolTip": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\Repositories\\ReaUtilisateurRepository.cs",
+              "RelativeToolTip": "Repositories\\ReaUtilisateurRepository.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAgwE0AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T13:37:11.436Z",
               "EditorCaption": ""
             }
           ]

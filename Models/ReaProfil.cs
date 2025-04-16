@@ -10,4 +10,6 @@ public partial class ReaProfil
     public string? Libelle { get; set; }
 
     public virtual ICollection<ReaDroitProfil> ReaDroitProfils { get; set; } = new List<ReaDroitProfil>();
+
+    public virtual ICollection<ReaChampProfil> ReaChampProfils { get; set; } = new List<ReaChampProfil>();
 }

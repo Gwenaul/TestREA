@@ -55,12 +55,15 @@ public partial class ReaUtilisateur
 
     public virtual ReaUtilisateurRh? IdUtilisateurRhNavigation { get; set; }
 
+    // Relation : Un utilisateur peut avoir plusieurs droits de son profil
     public virtual ICollection<ReaDroitProfil> ReaDroitProfils { get; set; } = new List<ReaDroitProfil>();
-
+    // Relation : Un utilisateur peut avoir plusieurs droits de son groupe
     public virtual ICollection<ReaDroitRole> ReaDroitRoles { get; set; } = new List<ReaDroitRole>();
-
+    // Relation : Un utilisateur peut avoir plusieurs droits utilisateur
     public virtual ICollection<ReaDroitUtilisateur> ReaDroitUtilisateurs { get; set; } = new List<ReaDroitUtilisateur>();
-
+    // Relation : Un utilisateur peut avoir plusieurs verrous
     public virtual ICollection<ReaVerrou> ReaVerrous { get; set; } = new List<ReaVerrou>();
+    // Relation : Un utilisateur peut avoir plusieurs accès
+    public virtual ICollection<ReaAcce> ReaAcces { get; set; } = new List<ReaAcce>();
 
 }

@@ -35,12 +35,6 @@
             @Html.DisplayFor(model => model.Titre)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MotPasse)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MotPasse)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EmailUtilisateur)
         </dt>
         <dd class = "col-sm-10">
@@ -118,22 +112,57 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IdGroupeNavigation.Libelle)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdGroupeNavigation.ReaDroitGroupes)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.IdGroupeNavigation != null && Model.IdGroupeNavigation.ReaDroitGroupes != null && Model.IdGroupeNavigation.ReaDroitGroupes.Any())
+            {
+                <ul>
+                    @foreach (var droitGroupe in Model.IdGroupeNavigation.ReaDroitGroupes)
+                    {
+                        <li>Application : @droitGroupe.IdApplicationNavigation.Application</li>
+                        <li>Autorise : @droitGroupe.Autorise</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>Aucun droitGroupes attribué</p>
+            }
+        </dd>
+
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ReaDroitProfils)
         </dt>
         <dd class = "col-sm-10">
             @if (Model.ReaDroitProfils != null && Model.ReaDroitProfils.Any())
-                {
-                    <ul>
-                        @foreach (var droitProfil in Model.ReaDroitProfils)
+            {
+                <ul>
+                    @foreach (var droitProfil in Model.ReaDroitProfils)
+                    {
+                        <li>@droitProfil.IdProfilNavigation.Libelle</li>
+                        @foreach (var champ in droitProfil.IdProfilNavigation.ReaChampProfils)
+                        {
+                            @if (champ.Autorise)
                             {
-                                <li>@droitProfil.IdProfilNavigation.Libelle</li>
+                                <ul>
+                                    @* <li>@champ.ReaChamp.Description</li> *@
+                                    @foreach (var champApplication in champ.ReaChamp.ReaChampApplications)
+                                    {
+                                        <li>@champApplication.Libelle</li>
+                                    }
+                                    @* <li>@champ.IdChamp</li> *@
+                                    <li>@champ.Autorise</li>
+                                </ul>
                             }
+                        }
+                    }
                     </ul>
                 }
             else
                 {
-                    <p>Aucun profil attribué</p>
+                    <p>Aucun droitProfils attribué</p>
                 }
         </dd>
         <dt class = "col-sm-2">
@@ -151,7 +180,7 @@
                 }
             else
                 {
-                    <p>Aucun rôle attribué</p>
+                    <p>Aucun droitRôles attribué</p>
                 }
         </dd>
         <dt class = "col-sm-2">
@@ -163,7 +192,7 @@
                     <ul>
                         @foreach (var droitUtilisateur in Model.ReaDroitUtilisateurs)
                             {
-                                <li>@droitUtilisateur.IdApplicationNavigation.Application</li>
+                        <li>Application : @droitUtilisateur.IdApplicationNavigation.Application</li>
                             }
                     </ul>
                 }
@@ -181,7 +210,7 @@
                     <ul>
                         @foreach (var verrou in Model.ReaVerrous)
                             {
-                                <li>@verrou.IdApplicationNavigation.Application</li>
+                        <li>Application : @verrou.IdApplicationNavigation.Application</li>
                                 <ul>
                                     <li>Nombre de tentatives : @verrou.NbTentative</li>
                                     <li>Date du verrou : @verrou.DateVerrou</li>
@@ -191,7 +220,7 @@
                 }
             else
                 {
-                    <p>Aucune verrou attribué</p>
+                    <p>Aucun verrou attribué</p>
                 }
         </dd>
         <dt class = "col-sm-2">

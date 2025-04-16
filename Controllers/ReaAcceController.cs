@@ -6,27 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TestREA.Models;
+using TestREA.Repositories;
 
 namespace TestREA.Controllers
 {
     public class ReaAcceController : Controller
     {
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
+        private readonly IReaAcceRepository _repository;
 
-        public ReaAcceController(AppDbContext context)
+        public ReaAcceController(AppDbContext context, IReaAcceRepository repository)
         {
-            _context = context;
+            _repository = repository;
+            //_context = context;
         }
 
         // GET: ReaAcce
         public async Task<IActionResult> Index(int page = 1, int nombreLignes = 10)
         {
 
-            var appDbContextTotal = await _context.ReaAcces.CountAsync();
-            var appDbContextRestreint = await _context.ReaAcces
-                .Skip((page - 1) * nombreLignes)
-                .Take(nombreLignes)
-                .ToListAsync();
+            var appDbContextTotal = await _repository.CountAsync();
+            var appDbContextRestreint = await _repository.GetAllAsync(page, nombreLignes);
 
             ViewBag.Page = page;
             ViewBag.NombreLignes = nombreLignes;
@@ -43,9 +43,7 @@ namespace TestREA.Controllers
                 return NotFound();
             }
 
-            var reaAcce = await _context.ReaAcces
-                .Include(r => r.IdApplicationNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var reaAcce = await _repository.FindAsync(id.Value);
             if (reaAcce == null)
             {
                 return NotFound();
@@ -57,7 +55,7 @@ namespace TestREA.Controllers
         // GET: ReaAcce/Create
         public IActionResult Create()
         {
-            ViewData["IdApplication"] = new SelectList(_context.ReaApplications, "Id", "Id");
+            ViewData["IdApplication"] =_repository.GetApplicationsSelectListAsync();
             return View();
         }
 
@@ -70,11 +68,10 @@ namespace TestREA.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(reaAcce);
-                await _context.SaveChangesAsync();
+                _repository.AddAsync(reaAcce);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdApplication"] = new SelectList(_context.ReaApplications, "Id", "Id", reaAcce.IdApplication);
+            ViewData["IdApplication"] = _repository.GetApplicationsSelectListAsync();
             return View(reaAcce);
         }
 
@@ -86,12 +83,12 @@ namespace TestREA.Controllers
                 return NotFound();
             }
 
-            var reaAcce = await _context.ReaAcces.FindAsync(id);
+            var reaAcce = await _repository.FindAsync(id.Value);
             if (reaAcce == null)
             {
                 return NotFound();
             }
-            ViewData["IdApplication"] = new SelectList(_context.ReaApplications, "Id", "Id", reaAcce.IdApplication);
+            ViewData["IdApplication"] = _repository.GetApplicationsSelectListAsync();
             return View(reaAcce);
         }
 
@@ -111,12 +108,11 @@ namespace TestREA.Controllers
             {
                 try
                 {
-                    _context.Update(reaAcce);
-                    await _context.SaveChangesAsync();
+                    await _repository.UpdateAsync(reaAcce);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ReaAcceExists(reaAcce.Id))
+                    if (!await ReaAcceExistsAsync(reaAcce.Id))
                     {
                         return NotFound();
                     }
@@ -127,7 +123,7 @@ namespace TestREA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdApplication"] = new SelectList(_context.ReaApplications, "Id", "Id", reaAcce.IdApplication);
+            ViewData["IdApplication"] = _repository.GetApplicationsSelectListAsync();
             return View(reaAcce);
         }
 
@@ -139,9 +135,7 @@ namespace TestREA.Controllers
                 return NotFound();
             }
 
-            var reaAcce = await _context.ReaAcces
-                .Include(r => r.IdApplicationNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var reaAcce = await _repository.FindAsync(id.Value);
             if (reaAcce == null)
             {
                 return NotFound();
@@ -155,19 +149,19 @@ namespace TestREA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var reaAcce = await _context.ReaAcces.FindAsync(id);
+            var reaAcce = await _repository.FindAsync(id);
             if (reaAcce != null)
             {
-                _context.ReaAcces.Remove(reaAcce);
+                _repository.DeleteAsync(reaAcce);
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ReaAcceExists(int id)
+        private async Task<bool> ReaAcceExistsAsync(int id)
         {
-            return _context.ReaAcces.Any(e => e.Id == id);
+            return await _repository.ReaAcceExistsAsync(id);
         }
+
     }
 }

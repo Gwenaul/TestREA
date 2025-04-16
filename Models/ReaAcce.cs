@@ -14,4 +14,6 @@ public partial class ReaAcce
     public int? IdUtilisateur { get; set; }
 
     public virtual ReaApplication? IdApplicationNavigation { get; set; }
+
+    public virtual ReaUtilisateur? IdUtilisateurNavigation { get; set; }
 }

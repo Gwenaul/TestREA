@@ -88,10 +88,10 @@
                 @Html.DisplayFor(modelItem => item.DateConnexion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUtilisateur)
+                @Html.DisplayFor(modelItem => item.IdUtilisateurNavigation.NomUtilisateur)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdApplicationNavigation.Id)
+                @Html.DisplayFor(modelItem => item.IdApplicationNavigation.Application)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

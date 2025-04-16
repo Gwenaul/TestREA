@@ -1,8 +1,13 @@
 using TestREA.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using TestREA.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Ajouter le Data Access Layer (DAL) et les repositories
+builder.Services.AddScoped<IReaUtilisateurRepository, ReaUtilisateurRepository>();
+builder.Services.AddScoped<IReaAcceRepository, ReaAcceRepository>();
 
 // Ajouter la configuration de la base de données à partir de appsettings.json
 builder.Services.AddDbContext<AppDbContext>(options =>
