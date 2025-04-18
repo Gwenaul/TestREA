@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\wwwroot\\js\\charts.js",
+      "PackagePath": "staticwebassets\\js\\charts.js"
+    },
+    {
+      "Id": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\wwwroot\\js\\dashboardData.js",
+      "PackagePath": "staticwebassets\\js\\dashboardData.js"
+    },
+    {
       "Id": "C:\\Users\\g.bodet\\Desktop\\Projet#1_Le_CNAM\\TestREAScaffoldDotNet\\TestREA\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

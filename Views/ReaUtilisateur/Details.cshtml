@@ -146,15 +146,13 @@
                         {
                             @if (champ.Autorise)
                             {
-                                <ul>
                                     @* <li>@champ.ReaChamp.Description</li> *@
                                     @foreach (var champApplication in champ.ReaChamp.ReaChampApplications)
                                     {
-                                        <li>@champApplication.Libelle</li>
+                                        <li>Champ : @champApplication.Libelle</li>
                                     }
                                     @* <li>@champ.IdChamp</li> *@
                                     <li>@champ.Autorise</li>
-                                </ul>
                             }
                         }
                     }
@@ -211,10 +209,8 @@
                         @foreach (var verrou in Model.ReaVerrous)
                             {
                         <li>Application : @verrou.IdApplicationNavigation.Application</li>
-                                <ul>
                                     <li>Nombre de tentatives : @verrou.NbTentative</li>
                                     <li>Date du verrou : @verrou.DateVerrou</li>
-                                </ul>
                             }
                     </ul>
                 }
@@ -232,10 +228,44 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdUtilisateurRhNavigation)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdUtilisateurRhNavigation.Id)
+        @if (Model.IdUtilisateurRhNavigation != null)
+        {
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdUtilisateurRhNavigation.NomUtilisateurRh)
         </dd>
-    </dl>
+        }
+        else
+        {
+        <dd class="col-sm-10">
+            Pas de fiche créée
+        </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReaAcces)
+        </dt>
+        @if (Model.ReaAcces != null && Model.ReaAcces.Any())
+        {
+            
+            <dd class="col-sm-10">
+                <ul>
+                    @foreach (var acces in Model.ReaAcces)
+                    {
+                        if (acces.DateConnexion >= DateTime.Now.AddMonths(-1))
+                        {
+                            <li>Application : @acces.IdApplicationNavigation.Application</li>
+                            <li>Date de connection : @acces.DateConnexion</li>
+                        }
+                    }
+                </ul>
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-10">
+                Aucun accès recensé
+            </dd>
+        }
+        </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |

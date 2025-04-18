@@ -278,3 +278,4 @@ C:\Users\g.bodet\Desktop\Projet#1_Le_CNAM\TestREAScaffoldDotNet\TestREA\obj\Debu
 C:\Users\g.bodet\Desktop\Projet#1_Le_CNAM\TestREAScaffoldDotNet\TestREA\bin\Debug\net8.0\TestREA.staticwebassets.endpoints.json
 C:\Users\g.bodet\Desktop\Projet#1_Le_CNAM\TestREAScaffoldDotNet\TestREA\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\g.bodet\Desktop\Projet#1_Le_CNAM\TestREAScaffoldDotNet\TestREA\obj\Debug\net8.0\staticwebassets\msbuild.TestREA.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\g.bodet\Desktop\Projet#1_Le_CNAM\TestREAScaffoldDotNet\TestREA\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

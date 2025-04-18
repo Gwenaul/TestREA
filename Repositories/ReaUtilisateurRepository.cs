@@ -72,6 +72,9 @@ namespace TestREA.Repositories
                 .Include(r => r.ReaDroitRoles).ThenInclude(rr => rr.IdRoleNavigation)
                 .Include(r => r.ReaDroitUtilisateurs).ThenInclude(rr => rr.IdApplicationNavigation)
                 .Include(r => r.ReaVerrous).ThenInclude(rr => rr.IdApplicationNavigation)
+                .Include(u => u.ReaAcces
+                    .Where(a => a.DateConnexion >= DateTime.Now.AddMonths(-1)))
+                    .ThenInclude(a => a.IdApplicationNavigation)
                 .FirstOrDefaultAsync(u => u.Id == id);
         }
 

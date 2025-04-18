@@ -87,9 +87,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DateConnexion)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdUtilisateurNavigation.NomUtilisateur)
-            </td>
+                @if (item.IdUtilisateurNavigation != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdUtilisateurNavigation.NomUtilisateur)
+                        @Html.DisplayFor(modelItem => item.IdUtilisateurNavigation.PrenomUtilisateur)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdUtilisateur)
+                    </td>
+                }
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.IdUtilisateurNavigation.NomUtilisateur) *@
+            @* </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.IdApplicationNavigation.Application)
             </td>

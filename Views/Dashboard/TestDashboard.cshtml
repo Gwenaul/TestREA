@@ -1,0 +1,105 @@
+﻿@model TestREA.Models.ReaUtilisateur
+
+@{
+    ViewData["Title"] = "Dashboard - @Model.NomUtilisateur @Model.PrenomUtilisateur";
+}
+
+<h1>Tableau de bord - @Model.NomUtilisateur @Model.PrenomUtilisateur</h1>
+
+<div class="row">
+    <!-- Statut et Groupe -->
+    <div class="col-md-4">
+        <h3>Statut et Groupe</h3>
+        <p><strong>Statut :</strong> <span class="badge bg-info">@Model.IdStatutNavigation?.Libelle</span></p>
+        <p><strong>Groupe :</strong> <span class="badge bg-primary">@Model.IdGroupeNavigation?.Libelle</span></p>
+    </div>
+
+    <!-- Droits par groupe -->
+    <div class="col-md-8">
+        <h3>Droits par groupe</h3>
+        <canvas id="droitGroupeChart" width="250" height="100"></canvas>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Verrous -->
+    <div class="col-md-4">
+        <h3>Verrous</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Application</th>
+                    <th>Nombre de tentatives</th>
+                    <th>Date du verrou</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var verrou in Model.ReaVerrous)
+                {
+                    <tr>
+                        <td>@verrou.IdApplicationNavigation?.Application</td>
+                        <td>@verrou.NbTentative</td>
+                        <td>@verrou.DateVerrou?.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    @* <canvas id="droitProfilChart" style="aspect-ratio: 200 / 800;"></canvas> *@
+    <!-- Droits par profil -->
+    <div class="col-md-8">
+        <h3>Droits par profil</h3>
+        <ul>
+            @foreach (var droitProfil in Model.ReaDroitProfils)
+            {
+                <li>
+                    <strong>@droitProfil.IdProfilNavigation?.Libelle</strong>
+                    <canvas id="droitProfilChart" width="50" height="100"></canvas>
+                    @* <ul> *@
+                    @*     @foreach (var champ in droitProfil.IdProfilNavigation?.ReaChampProfils ?? Enumerable.Empty<ReaChampProfil>()) *@
+                    @*     { *@
+                    @*             @foreach (var champApplication in champ.ReaChamp.ReaChampApplications) *@
+                    @*             { *@
+                    @*             <li>@champApplication.Libelle</li> *@
+                    @*             } *@
+                    @*             @if (champ.Autorise) *@
+                    @*             { *@
+                    @*             <span class="text-success">Autorisé</span> *@
+                    @*             } *@
+                    @*             else *@
+                    @*             { *@
+                    @*             <span class="text-danger">NonAutorisé</span> *@
+                    @*             } *@
+                    @*     } *@
+                    @* </ul> *@
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-12">
+        <h3>Accès aux applications</h3>
+        <canvas id="reaAccesChart" width="100" height="50"></canvas>
+    </div>
+</div>
+
+@section Scripts {
+    <script id="chart-data" type="application/json">
+        {
+            "labels": @Html.Raw(Json.Serialize(Model.IdGroupeNavigation?.ReaDroitGroupes.Select(d => d.IdApplicationNavigation?.Application))),
+            "data": @Html.Raw(Json.Serialize(Model.IdGroupeNavigation?.ReaDroitGroupes.Select(d => d.Autorise ? 1 : (d.Autorise == false ? -1 : 0)))),
+            "backgroundColors": @Html.Raw(Json.Serialize(Model.IdGroupeNavigation?.ReaDroitGroupes.Select(d => d.Autorise ? "rgba(75, 192, 192, 0.7)" : (d.Autorise == false ? "rgba(255, 99, 132, 0.7)" : "rgba(201, 203, 207, 0.7)")))),
+            "champLabels": @Html.Raw(Json.Serialize(Model.ReaDroitProfils.SelectMany(p => p.IdProfilNavigation.ReaChampProfils.Select(c => c.ReaChamp.ReaChampApplications.Select(d => d.Libelle))))),
+            "autoriseData": @Html.Raw(Json.Serialize(Model.ReaDroitProfils.SelectMany(p => p.IdProfilNavigation.ReaChampProfils.Select(c => c.Autorise ? 1 : 0)))),
+            "nonAutoriseData": @Html.Raw(Json.Serialize(Model.ReaDroitProfils.SelectMany(p => p.IdProfilNavigation.ReaChampProfils.Select(c => c.Autorise ? 0 : 1))))
+        }
+    </script>
+    <script id="chart-data-acces" type="application/json">
+        @Html.Raw(ViewData["AccesChartJson"])
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="~/js/dashboardData.js" asp-append-version="true"></script>
+    <script src="~/js/charts.js" asp-append-version="true"></script>
+}

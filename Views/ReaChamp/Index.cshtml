@@ -32,9 +32,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReaChampVerrou.IdApplicationNavigation.Application)
-                </td>
+                @if (item.ReaChampVerrou != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReaChampVerrou.IdApplicationNavigation.Application)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Pas d'idVerrou sur ce champ
+                    </td>
+                }
+                
                 <td>
                     @foreach (var champ in item.ReaChampApplications)
                     {
